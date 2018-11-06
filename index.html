@@ -11,6 +11,8 @@
 <p>JSON response</p>
 <button onclick="postExampleWithResponse()">Add Colour</button>
 
+<button onclick="getExampleWithResponse()">Add Colour</button>
+
 <script type="application/javascript">
 function postExample(){
     //Create a new XMLHttpRequest Object
@@ -52,6 +54,37 @@ function postExampleWithResponse()
 
 
 }
+
+function getExampleWithResponse()
+{
+    //USING A GET REQUEST  - LOOK AT THE @GetMapping on the other side, NO request Body should be added (no additional message)
+    var obj = new XMLHttpRequest();
+    obj.open("GET","http://localhost:8080/addcolour?colourName=blueish");
+    obj.setRequestHeader("Content-Type","application/json");
+    obj.responseType='json';
+    obj.send();
+    obj.onreadystatechange = function checkAPIState()
+    {
+
+
+        console.log("Checking status");
+        if(this.status==200 && this.readyState==4)
+        {
+            document.write(obj.response);
+            console.log(obj.response);
+            var theColour = obj.response;
+            console.log(theColour.colourName);
+        }
+        else
+        {
+            console.log(this.status);
+        }
+    }
+
+
+}
+
+
 
 
 
