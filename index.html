@@ -70,10 +70,9 @@ function getExampleWithResponse()
         console.log("Checking status");
         if(this.status==200 && this.readyState==4)
         {
-            document.write(obj.response);
+            document.write(obj.response.colourName);
             console.log(obj.response);
-            var theColour = obj.response;
-            console.log(theColour.colourName);
+            console.log(obj.response.colourName);
         }
         else
         {
